@@ -1,0 +1,95 @@
+.message {
+  background: #f9f9f9;
+  height: 100%;
+  width: 100%;
+  &-list {
+    height: 70%;
+    width: 100%;
+    overflow-y: auto;
+    padding: 12px 20px;
+    &-own {
+      text-align: right;
+      margin-bottom: 10px;
+      .message-list-content {
+        background: greenyellow;
+        &:before {
+          content: "";
+          position: absolute;
+          right: -16px;
+          top: 6px;
+          width: 0;
+          height: 0;
+          border-top: 8px solid transparent;
+          border-left: 8px solid greenyellow;
+          border-right: 8px solid transparent;
+          border-bottom: 8px solid transparent;
+        }
+      }
+    }
+
+    &-other {
+      text-align: left;
+      margin-bottom: 10px;
+      .message-list-content {
+        background: #ffffff;
+        &:before {
+          content: "";
+          position: absolute;
+          left: -16px;
+          top: 6px;
+          width: 0;
+          height: 0;
+          border-top: 8px solid transparent;
+          border-left: 8px solid transparent;
+          border-right: 8px solid #fff;
+          border-bottom: 8px solid transparent;
+        }
+      }
+    }
+    &-content {
+      display: inline-block;
+      max-width: calc(100% - 80px);
+      margin: 0 20px;
+      padding: 10px;
+      box-sizing: border-box;
+      border-radius: 4px;
+      position: relative;
+    }
+  }
+  &-send {
+    height: 30%;
+    width: 100%;
+    border-top: 2px solid #f0f2f5;
+    &-icon {
+      height: 40px;
+      padding-left: 20px;
+      line-height: 50px;
+      position: relative;
+      img {
+        margin-right: 12px;
+        cursor: pointer;
+      }
+    }
+    &-box {
+      height: calc(100% - 40px);
+      padding-bottom: 20px;
+      &-input {
+        border: none;
+        outline: none;
+        width: 100%;
+        height: 100%;
+        background: #F7F8FA;
+        padding: 0 30px;
+        resize: none;
+        margin: 0;
+        font-size: 14px;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        overflow-y: auto;
+      }
+    }
+  }
+}
