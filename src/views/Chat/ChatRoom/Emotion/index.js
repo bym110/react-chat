@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import nameList from '../nameList'
 import './emotion.less'
 
@@ -17,30 +17,28 @@ const list = [
     ['NO', 'OK', '爱情', '飞吻', '跳跳', '发抖', '怄火', '转圈'],
     ['磕头', '回头', '跳绳', '投降', '激动', '乱舞', '左太极', '右太极'],
 ]
-class Emotion extends Component {
-        render() {
+function Emotion(props) {
+    const emotion = (name)=>{
+        let index = nameList.indexOf(name)
+        if (index >= 0) {
             return (
-                <div className="emotion-box">
-                    {list.map((line,i)=>(
-                        <div className="emotion-box-line" key={i}>
-                            {line.map((item,index)=>(
-                                <div className="emotion-item" key={index} onClick={()=>this.props.emotion(`[${item}]`)}>
-                                    {this.emotion(item)}
-                                </div>
-                            ))}
+                <img src={require("../wx/"+index+".png")} alt="" />
+            )
+        }
+    }
+    return (
+        <div className="emotion-box">
+            {list.map((line,i)=>(
+                <div className="emotion-box-line" key={i}>
+                    {line.map((item,index)=>(
+                        <div className="emotion-item" key={index} onClick={()=>props.emotion(`[${item}]`)}>
+                            {emotion(item)}
                         </div>
                     ))}
                 </div>
-            )
-        }
-        emotion = (name)=>{
-            let index = nameList.indexOf(name)
-            if (index >= 0) {
-                return (
-                    <img src={require("../wx/"+index+".png")} alt="" />
-                )
-            }
-        }
+            ))}
+        </div>
+    )
 }
 
 export default Emotion

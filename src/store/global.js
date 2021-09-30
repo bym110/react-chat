@@ -1,23 +1,20 @@
 import {
     observable,
-    action
+    action,
+    makeObservable
 } from 'mobx'
 
 class Global {
-    @observable activeKey = '1';
-    @observable selectEmotion = {}
-    @observable messageList = []
-    @action.bound
-    setActiveKey(val) {
-        this.activeKey = val
+    constructor() {
+        makeObservable(this)
     }
+
+    // 当前选择的联系人信息
+    @observable contactInfo = {};
+    // 设置当前选择的联系人信息
     @action.bound
-    setSelectEmotion(data) {
-        this.selectEmotion = Object.assign({},this.selectEmotion,data)
-    }
-    @action.bound
-    updateMessage(message) {
-        this.messageList.push(message)
+    setContactInfo(info) {
+        this.contactInfo = info;
     }
 }
 export default new Global()

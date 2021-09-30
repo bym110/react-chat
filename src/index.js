@@ -7,6 +7,7 @@ import {ConfigProvider} from 'antd'
 import zhCN from 'antd/es/locale/zh_CN';
 import { Provider } from 'mobx-react';
 import store from './store';
+import './mock/index'
 
 ReactDOM.render(
 

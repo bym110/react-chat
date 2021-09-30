@@ -4,12 +4,7 @@ import Recent from '../views/List/Recent'
 import Contact from '../views/List/Contact'
 import Chat from '../views/Chat/ChatRoom'
 import Detail from '../views/Chat/Detail'
-import Info from '../views/Operate/Info'
-
-const contact = require('../assets/images/contact.svg')
-const contactActive = require('../assets/images/contactActive.svg')
-const recent = require('../assets/images/recent.svg')
-const recentActive = require('../assets/images/recentActive.svg')
+import Information from '../views/Operate/Information'
 
 
 const routes = [
@@ -26,23 +21,21 @@ const routes = [
             {
                 name:'recent',
                 path:'/recent',
-                icon:recent,
-                active:recentActive,
+                icon:'Recent',
                 components:{
                     list:Recent,
                     chat:Chat,
-                    info:Info
+                    info:Information
                 }
             },
             {
                 name:'contact',
                 path:'/contact',
-                icon:contact,
-                active:contactActive,
+                icon:'Contact',
                 components:{
                     list:Contact,
                     chat:Detail,
-                    info:Info
+                    info:Information
                 }
             }
         ]

@@ -1,10 +1,15 @@
 import {
     observable,
-    computed
+    computed,
+    action,
+    makeObservable
 } from 'mobx';
 import routes from '../router'
 
 class Router {
+    constructor() {
+        makeObservable(this)
+    }
     @observable routerArr = routes;
     @observable routerPath = "/";
 
@@ -16,7 +21,12 @@ class Router {
     }
     //侧边栏默认选中
     @observable defaultActive = "recent"
-
+    // 更新 defaultActive
+    @action.bound
+    setActive(path) {
+        const filter = this.ADMIN_ROUTER.defaultRouter.filter(route=>path === route.path)
+        this.defaultActive = filter.length? filter[0].path: 'recent';
+    }
     @computed
     get currentRouter() {
         routes.forEach(item => {

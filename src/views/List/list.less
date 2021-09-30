@@ -1,36 +1,59 @@
-.recent-list {
-  .ant-list-item {
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-    overflow: hidden;
-    border-bottom: 1px solid #f0f2f5;
-    cursor: pointer;
-    .ant-list-item-meta-avatar {
-      margin-right: 10px;
+.contact-list {
+    height: 100%;
+    overflow: auto;
+    .ant-collapse {
+        border: 0;
+        .ant-collapse-content > .ant-collapse-content-box {
+            padding: 16px 0;
+        }
     }
-    .ant-list-item-meta-content {
-      .ant-list-item-meta-title {
-        font-size: 13px;
-        margin-bottom: 0;
-      }
-      .ant-list-item-meta-description {
-        font-size: 12px;
-      }
 
+
+    .ant-list-item {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+        overflow: hidden;
+        border-bottom: 1px solid #f0f2f5;
+        cursor: pointer;
+
+        .ant-list-item-meta-avatar {
+            margin-right: 10px;
+        }
+
+        .ant-list-item-meta-content {
+            .ant-list-item-meta-title {
+                font-size: 13px;
+                margin-bottom: 0;
+                width: 85px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .ant-list-item-meta-description {
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        }
+
+        .showTime {
+            position: absolute;
+            font-size: 12px;
+            color: #999999;
+            top: 10px;
+            right: 15px;
+        }
+
+        &.active {
+            background: #f5f5f5;
+        }
+
+        &:hover {
+            background: #f5f5f5;
+        }
     }
-    .showTime {
-      position: absolute;
-      font-size: 12px;
-      color: #999999;
-      top: 12px;
-      right: 15px;
-    }
-    &.active {
-      background: #f2f2f2;
-    }
-    &:hover {
-      background: #f2f2f2;
-    }
-  }
 }
