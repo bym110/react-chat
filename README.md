@@ -12,6 +12,6 @@ In the project directory, you can run:
 打包为生产包
 ### `yarn eject`
 ## 项目预览地址
-https://bym110.github.io/react-chat/build
+https://bym110.github.io/react-chat/build/
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
