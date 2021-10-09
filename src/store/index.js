@@ -2,8 +2,9 @@ import router from './router'
 import global from './global'
 import chat from "./chat";
 
-export default {
+const store = {
     router,
     global,
     chat
 }
+export default store

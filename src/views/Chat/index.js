@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch} from "react-router";
 import { inject, observer } from 'mobx-react';
-import './chat.less'
+import './style.less'
 
 function Chat(props) {
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import nameList from '../nameList'
-import './emotion.less'
+import './style.less'
 
 const list = [
     ['微笑', '撇嘴', '色', '发呆', '得意', '流泪', '害羞', '闭嘴'],
@@ -22,7 +22,7 @@ function Emotion(props) {
         let index = nameList.indexOf(name)
         if (index >= 0) {
             return (
-                <img src={require("../wx/"+index+".png")} alt="" />
+                <img src={require("../wx/"+index+".png").default} alt="" />
             )
         }
     }

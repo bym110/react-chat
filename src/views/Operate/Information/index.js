@@ -18,7 +18,7 @@ function Information(props) {
     }, [props.global.contactInfo])
     const Info = (p) => (
         <>
-            <Image shape="square" width={50} height={50} src={p.avatar}/>
+            <Image style={{cursor: "pointer"}} shape="square" width={50} height={50} preview={{mask: ''}} src={p.avatar}/>
             <span style={{marginRight: '8px'}}>{p.name}</span>
             {p.gender === 1? <ManIcon/>: <WomenIcon/>}
         </>
@@ -28,7 +28,7 @@ function Information(props) {
             {
                 p.list.map(item=> (
                     <div className="listItem" key={item.id}>
-                        <Image shape="square" width={40} height={40} src={item.avatar}/>
+                        <Image style={{cursor: "pointer"}} shape="square" width={40} height={40} preview={{mask: ''}} src={item.avatar}/>
                         <div className="name">{item.name}</div>
                     </div>
                 ))

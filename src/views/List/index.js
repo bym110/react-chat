@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { inject, observer } from 'mobx-react';
 import { Input } from 'antd';
 import { SearchIcon } from '../Icon'
+import './style.less'
 
 function List(props) {
     const [searchText, setSearchText] = useState('');

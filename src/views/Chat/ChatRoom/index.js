@@ -4,6 +4,8 @@ import {FaceIcon, MessageIcon, UploadIcon} from "../../Icon";
 import Emotion from './Emotion'
 import nameList from './nameList'
 import { inject, observer } from 'mobx-react';
+import Profile from "../../Main/SideMenu/Profile";
+import ChatRecord from "./ChatRecord";
 
 function ChatRoom(props) {
     // 输入框的消息
@@ -87,9 +89,9 @@ function ChatRoom(props) {
         let index = nameList.indexOf(word);
         if (index>= 0) {
             let obj = {}
-            obj[index] = require(`./wx/${index}.png`)
+            obj[index] = require(`./wx/${index}.png`).default;
             props.chat.setSelectEmotion(obj)
-            return `<img src=`+require(`./wx/${index}.png`)+` alt="${word}" align="middle">`
+            return `<img src=`+require(`./wx/${index}.png`).default+` alt="${word}" >`
         } else {
             return ''
         }
@@ -97,7 +99,6 @@ function ChatRoom(props) {
     }
     const sendMessage =()=>{
         const el = document.querySelector('#messageSendBox')
-        const listEl = document.querySelector('#message_list')
         const msg =el.innerHTML.replace(/<\s?img[^>]*>/gi,remotion)
         if (!msg) {
             notification.warning({
@@ -113,14 +114,12 @@ function ChatRoom(props) {
         el.innerHTML='';
         setStartOffset(0);
         setEndOffset(0)
-        listEl.scrollTop = listEl.scrollHeight - listEl.clientHeight;
         setTimeout(()=>{
             let otherObj={
                 chatContent:'你好！',
                 targetType:2
             }
             props.chat.updateMessage(otherObj)
-            listEl.scrollTop = listEl.scrollHeight - listEl.clientHeight;
         },1000)
     }
     // 将图片换成表情文字
@@ -171,13 +170,21 @@ function ChatRoom(props) {
     useEffect(()=> {
         const listEl = document.querySelector('#message_list');
         listEl.scrollTop = listEl.scrollHeight - listEl.clientHeight;
-    }, [props.chat.messageList])
+    }, [props.chat.messageList.length])
     return (
         <div className="message">
             <div className="message-list" id="message_list">
                 {props.chat.messageList.map((item,index)=>(
                     <div key={index} className={item.targetType === 1?'message-list-own':'message-list-other'}>
-                        <Avatar size={40} src={item.avatar} style={{float:item.targetType === 1?'right': 'left'}} />
+                        <Popover
+                            content={<Profile info={item.targetType === 1 ? props.global.userInfo:item} />}
+                            title=""
+                            placement="rightTop"
+                            trigger="click"
+                            arrowPointAtCenter
+                        >
+                            <Avatar size={40} shape="square" src={item.targetType === 1? props.global.userInfo.avatar:item.avatar} style={{cursor: 'pointer', float:item.targetType === 1?'right': 'left'}} />
+                        </Popover>
                         <div className='message-list-content' dangerouslySetInnerHTML={{__html:item.chatContent.replace(/\[[^\]]+\]/g,emotion)}} />
                     </div>
                 ))}
@@ -199,7 +206,7 @@ function ChatRoom(props) {
                         <UploadIcon style={{fontSize:'20px'}}/>
                     </Upload>
                     <Popover
-                        content="11111"
+                        content={<ChatRecord/>}
                         title=""
                         arrowPointAtCenter
                         placement="topLeft"
@@ -229,4 +236,4 @@ function ChatRoom(props) {
     )
 }
 
-export default inject('chat')(observer(ChatRoom))
+export default inject('chat', 'global')(observer(ChatRoom))

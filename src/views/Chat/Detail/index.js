@@ -1,13 +1,13 @@
 import React from 'react'
 import './style.less'
 import {inject, observer} from "mobx-react";
-import {Avatar, Button, Divider } from "antd";
+import { Button, Divider, Image} from "antd";
 
 function Detail(props) {
     return (
         <div className="detail">
             <div className="detail-info">
-                <Avatar shape="square" size={80} src={props.global.contactInfo.avatar} />
+                <Image style={{cursor: "pointer"}} shape="square" width={80} height={80} preview={{mask: ''}} src={props.global.contactInfo.avatar}/>
                 <div className="ant-list-item-meta-title">{props.global.contactInfo.name}</div>
                 <div className="ant-list-item-meta-description">{props.global.contactInfo.signature}</div>
                 <Divider/>

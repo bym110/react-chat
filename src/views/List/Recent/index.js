@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { List, Avatar,Badge } from 'antd';
-import '../list.less'
 import $http from "../../../axios";
 import {inject, observer} from "mobx-react";
 
@@ -15,8 +14,24 @@ function Recent(props) {
             setFlag(true);
         }
     }
-    const getChatMsgList =async function (total) {
-        const res = await $http.get('/api/chat/get/chatMsgList', {params: {total}});
+    const getChatMsgList =async function (item) {
+        let params = {
+            total: item.total,
+            name: item.name,
+            target: item.target,
+            avatar: item.avatar
+        }
+        if (item.target === 1) {
+            params = {
+                ...params,
+                "region":item.region,
+                "signature":item.signature,
+                "gender": item.gender,
+                "remark": item.remark,
+                "account": item.account
+            }
+        }
+        const res = await $http.post('/api/chat/get/chatMsgList', params);
         if (res.code === 0) {
             props.chat.setMessage(res.data)
         }
@@ -27,12 +42,12 @@ function Recent(props) {
         } else {
             getData()
         }
-    }, [flag])
+    }, [flag]) // eslint-disable-line react-hooks/exhaustive-deps
     const handleClick = function (item, index) {
         if (item.unread) item.total = item.unread;
         setActive(index);
         props.global.setContactInfo(item);
-        getChatMsgList(item.total);
+        getChatMsgList(item);
         item.unread = 0;
     }
     return (
